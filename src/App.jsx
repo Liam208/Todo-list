@@ -13,7 +13,7 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     if (cards.trim() !== "") {
-      setNewCard([...newCard, {cardName: cards, tasks: []}]);
+      setNewCard([...newCard, { cardName: cards, tasks: [] }]);
       setCards("");
     }
   }
@@ -31,20 +31,20 @@ function App() {
       )
     );
   };
-    const handleDeleteTask = (cardIndex, taskIndexToDelete) => {
-      setNewCard((prevCards) =>
-        prevCards.map((card, index) =>
-          index === cardIndex
-            ? {
-                ...card,
-                tasks: card.tasks.filter(
-                  (_, taskIndex) => taskIndex !== taskIndexToDelete
-                ),
-              }
-            : card
-        )
-      );
-    };
+  const handleDeleteTask = (cardIndex, taskIndexToDelete) => {
+    setNewCard((prevCards) =>
+      prevCards.map((card, index) =>
+        index === cardIndex
+          ? {
+              ...card,
+              tasks: card.tasks.filter(
+                (_, taskIndex) => taskIndex !== taskIndexToDelete
+              ),
+            }
+          : card
+      )
+    );
+  };
   return (
     <>
       <NavBar />
@@ -61,7 +61,7 @@ function App() {
           </div>
         </form>
       </div>
-      <div className="d-flex flex-wrap justify-content-start">
+      <div className="">
         {newCard.map((card, index) => (
           <PlainCard
             key={index}
@@ -70,10 +70,11 @@ function App() {
             index={index}
             tasks={card.tasks}
             onAddTask={(newTask) => handleAddTask(index, newTask)}
-            onDeleteTask={(taskIndex) => handleDeleteTask(index,taskIndex)}
+            onDeleteTask={(taskIndex) => handleDeleteTask(index, taskIndex)}
           />
         ))}
       </div>
+      
     </>
   );
 }
